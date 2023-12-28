@@ -3,8 +3,7 @@ import React, { useState } from "react";
 import InputBox from "../../components/Forms/InputBox";
 import SubmitButton from "../../components/Forms/SubmitButton";
 
-const Register = ({ navigation }) => {
-  const [name, setName] = useState("");
+const Login = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -12,13 +11,14 @@ const Register = ({ navigation }) => {
   const handleSubmit = () => {
     try {
       setLoading(true);
-      if (!name || !email || !password) {
+      if (!email || !password) {
         Alert.alert("Please fill all fields");
         setLoading(false);
         return;
       }
 
       setLoading(false);
+      console.log("logindata", { email, password });
     } catch (error) {
       setLoading(false);
       console.log(error);
@@ -27,9 +27,8 @@ const Register = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.pageTitle}>Register</Text>
+      <Text style={styles.pageTitle}>Login</Text>
       <View style={{ marginHorizontal: 20 }}>
-        <InputBox inputTitle={"Name"} value={name} setValue={setName} />
         <InputBox
           inputTitle={"Email"}
           autoComplete="email"
@@ -51,9 +50,12 @@ const Register = ({ navigation }) => {
         handleSubmit={handleSubmit}
       />
       <Text style={styles.linktext}>
-        Already Registered ?{" "}
-        <Text style={styles.link} onPress={() => navigation.navigate("Login")}>
-          LOGIN
+        not a User ?{" "}
+        <Text
+          style={styles.link}
+          onPress={() => navigation.navigate("Register")}
+        >
+          Register
         </Text>{" "}
       </Text>
     </View>
@@ -91,4 +93,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Register;
+export default Login;
