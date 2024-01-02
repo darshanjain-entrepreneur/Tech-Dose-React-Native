@@ -21,12 +21,14 @@ const Register = ({ navigation }) => {
 
       setLoading(false);
 
-      const { data } = await axios.post(
-        "http://192.168.29.53:8080/api/v1/auth/register",
-        { name, email, password }
-      );
+      const { data } = await axios.post("/auth/register", {
+        name,
+        email,
+        password,
+      });
 
       alert(data && data.message);
+      navigation.navigate("Login");
     } catch (error) {
       alert(error.response.data.message);
       setLoading(false);
