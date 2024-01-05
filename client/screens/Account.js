@@ -3,13 +3,17 @@ import React, { useContext } from "react";
 import { AuthContext } from "../context/authContext";
 import FooterMenu from "../components/Menu/FooterMenu";
 
-const Home = () => {
+const Account = () => {
   const [state] = useContext(AuthContext);
 
   return (
     <View style={styles.container}>
-      <Text>{JSON.stringify(state, null, 4)}</Text>
-      <FooterMenu />
+      <Text> Name: {state?.user.name}</Text>
+      <Text> Name: {state?.user.email}</Text>
+      <Text> Name: {state?.user.role}</Text>
+      <View style={{ flex: 1, justifyContent: "flex-end" }}>
+        <FooterMenu />
+      </View>
     </View>
   );
 };
@@ -23,4 +27,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Home;
+export default Account;
